@@ -68,142 +68,74 @@ const InvoiceGenerator = () => {
     calculateTotal(updatedRows);
   };
 
-  // const exportToPDF = () => {
-  //   const invoice = document.getElementById("invoice-content");
-  //   if (!invoice) {
-  //     console.error("Invoice element not found");
-  //     return;
-  //   }
+  const exportToPDF = () => {
+    const invoice = document.getElementById("invoice-content");
+    if (!invoice) {
+      console.error("Invoice element not found");
+      return;
+    }
 
-  //   const invoiceClone = invoice.cloneNode(true);
-  //   invoiceClone.style.width = "800px";
-  //   invoiceClone.style.position = 'absolute';
-  //   invoiceClone.style.left = '-9999px';
-  //   document.body.appendChild(invoiceClone);
+    const invoiceClone = invoice.cloneNode(true);
+    invoiceClone.style.width = "800px";
+    invoiceClone.style.position = 'absolute';
+    invoiceClone.style.left = '-9999px';
+    document.body.appendChild(invoiceClone);
 
-  //   // Hide delete buttons and the entire delete column
-  //   const deleteColumns = invoiceClone.querySelectorAll(".delete-column");
-  //   deleteColumns.forEach(column => column.remove()); // Completely remove the column
+    // Hide delete buttons and the entire delete column
+    const deleteColumns = invoiceClone.querySelectorAll(".delete-column");
+    deleteColumns.forEach(column => column.remove()); // Completely remove the column
 
-  //   const buttonContainer = invoiceClone.querySelector(".button-container");
-  //   if (buttonContainer) {
-  //     buttonContainer.style.display = 'none';
-  //   }
+    const buttonContainer = invoiceClone.querySelector(".button-container");
+    if (buttonContainer) {
+      buttonContainer.style.display = 'none';
+    }
 
-  //   const inputs = invoiceClone.querySelectorAll("input");
-  //   inputs.forEach(input => {
-  //     const span = document.createElement('span');
-  //     span.textContent = input.value || "";
-  //     span.style.padding = "2px";
-  //     input.parentNode.replaceChild(span, input);
-  //   });
+    const inputs = invoiceClone.querySelectorAll("input");
+    inputs.forEach(input => {
+      const span = document.createElement('span');
+      span.textContent = input.value || "";
+      span.style.padding = "2px";
+      input.parentNode.replaceChild(span, input);
+    });
 
-  //   const pdfOptions = {
-  //     scale: 1.5,
-  //     quality: 0.9,
-  //     useCORS: true,
-  //     allowTaint: true,
-  //     logging: false,
-  //     height: invoiceClone.scrollHeight,
-  //     windowWidth: 800,
-  //     windowHeight: invoiceClone.scrollHeight
-  //   };
+    const pdfOptions = {
+      scale: 1.5,
+      quality: 0.9,
+      useCORS: true,
+      allowTaint: true,
+      logging: false,
+      height: invoiceClone.scrollHeight,
+      windowWidth: 800,
+      windowHeight: invoiceClone.scrollHeight
+    };
 
-  //   html2canvas(invoiceClone, pdfOptions)
-  //     .then((canvas) => {
-  //       const imgData = canvas.toDataURL('image/jpeg', 0.9);
-  //       const pdf = new jsPDF({
-  //         orientation: 'portrait',
-  //         unit: 'mm',
-  //         format: 'a4',
-  //         compress: true
-  //       });
+    html2canvas(invoiceClone, pdfOptions)
+      .then((canvas) => {
+        const imgData = canvas.toDataURL('image/jpeg', 0.9);
+        const pdf = new jsPDF({
+          orientation: 'portrait',
+          unit: 'mm',
+          format: 'a4',
+          compress: true
+        });
 
-  //       const pdfWidth = pdf.internal.pageSize.getWidth();
-  //       const pdfHeight = Math.min(
-  //         (canvas.height * pdfWidth) / canvas.width,
-  //         pdf.internal.pageSize.getHeight() * 1.5
-  //       );
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = Math.min(
+          (canvas.height * pdfWidth) / canvas.width,
+          pdf.internal.pageSize.getHeight() * 1.5
+        );
 
-  //       pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-  //       const fileName = to ? `${to.replace(/\s+/g, "_")}_invoice.pdf` : "invoice.pdf";
-  //       pdf.save(fileName);
+        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+        const fileName = to ? `${to.replace(/\s+/g, "_")}_invoice.pdf` : "invoice.pdf";
+        pdf.save(fileName);
 
-  //       document.body.removeChild(invoiceClone);
-  //     })
-  //     .catch(error => {
-  //       console.error('Error generating PDF:', error);
-  //       document.body.removeChild(invoiceClone);
-  //     });
-  // };
-
-const exportToPDF = async () => {
-  const invoice = document.getElementById("invoice-content");
-  if (!invoice) return;
-
-  const invoiceClone = invoice.cloneNode(true);
-  invoiceClone.style.width = "800px";
-  invoiceClone.style.position = "absolute";
-  invoiceClone.style.left = "-9999px";
-  document.body.appendChild(invoiceClone);
-
-  // Remove delete column
-  const deleteColumns = invoiceClone.querySelectorAll(".delete-column");
-  deleteColumns.forEach((column) => column.remove());
-
-  // Hide buttons
-  const buttonContainer = invoiceClone.querySelector(".button-container");
-  if (buttonContainer) buttonContainer.style.display = "none";
-
-  // Convert inputs to text
-  const inputs = invoiceClone.querySelectorAll("input");
-  inputs.forEach((input) => {
-    const span = document.createElement("span");
-    span.textContent = input.value || "";
-    span.style.padding = "2px";
-    input.parentNode.replaceChild(span, input);
-  });
-
-  const canvas = await html2canvas(invoiceClone, {
-    scale: 2,
-    useCORS: true,
-    allowTaint: true,
-  });
-
-  const imgData = canvas.toDataURL("image/jpeg", 0.9);
-
-  const pdf = new jsPDF("p", "mm", "a4");
-  const pdfWidth = pdf.internal.pageSize.getWidth();
-  const pdfHeight = pdf.internal.pageSize.getHeight();
-
-  // Calculate image size to fit inside A4 (1 page)
-  const imgWidth = pdfWidth;
-  const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-  // If image height is bigger than A4, scale it down
-  let finalWidth = imgWidth;
-  let finalHeight = imgHeight;
-
-  if (imgHeight > pdfHeight) {
-    const scale = pdfHeight / imgHeight;
-    finalWidth = imgWidth * scale;
-    finalHeight = imgHeight * scale;
-  }
-
-  // Center the image in PDF
-  const x = (pdfWidth - finalWidth) / 2;
-  const y = (pdfHeight - finalHeight) / 2;
-
-  pdf.addImage(imgData, "JPEG", x, y, finalWidth, finalHeight);
-
-  const fileName = to ? `${to.replace(/\s+/g, "_")}_invoice.pdf` : "invoice.pdf";
-  pdf.save(fileName);
-
-  document.body.removeChild(invoiceClone);
-};
-
-
-
+        document.body.removeChild(invoiceClone);
+      })
+      .catch(error => {
+        console.error('Error generating PDF:', error);
+        document.body.removeChild(invoiceClone);
+      });
+  };
 
 
   const numberToWords = (num) => {
