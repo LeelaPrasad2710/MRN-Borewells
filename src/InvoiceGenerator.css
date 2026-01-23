@@ -1,0 +1,241 @@
+.invoice-container {
+  width: min(900px, 100%);
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+
+.invoice-header {
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: red;
+  text-align: center;
+  margin-top: -30px
+}
+
+.invoice-header h1 {
+  color: red;
+  font-size: 30px;
+}
+
+.invoice-header p {
+  font-size: 16px;
+  margin-top: -10px;
+}
+
+.invoice-header p {
+  color: rgb(8, 8, 8);
+  text-decoration: burlywood;
+}
+
+.invoice-details {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 0.1px;
+}
+
+.invoice-detailsED {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 26px;
+  font-weight: bold;
+  color: rgb(243, 12, 12);
+  margin-top: -45px;
+  margin-bottom: -20px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.detail-row label {
+  width: 15%;
+  font-weight: bold;
+}
+
+.detail-row input {
+  width: 30%;
+  padding: 1px;
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: -12px;
+}
+
+.invoice-table th,
+.invoice-table td {
+  border: 1px solid #ddd;
+  padding: 4px;
+  text-align: left;
+}
+
+.invoice-summary {
+  text-align: right;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.invoice-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2px;
+  padding-top: 1px;
+  border-top: 2px solid #000;
+}
+
+.bank-details {
+  text-align: left;
+  width: 70%;
+}
+
+/* Hide arrows for Chrome, Safari, Edge, and Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Button Colors */
+.clear-table {
+  background-color: #d9534f;
+  /* Red */
+}
+
+.clear-header {
+  background-color: #f0ad4e;
+  /* Orange */
+}
+
+.calculate-gst {
+  background-color: #0275d8;
+  /* Blue */
+}
+
+.clear-price {
+  background-color: #5bc0de;
+  /* Light Blue */
+}
+
+.export-button {
+  background-color: #30d4a5;
+  /* Light Blue */
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+
+/* Add these styles to your existing CSS file */
+@media print {
+  .delete-column {
+    display: none !important;
+  }
+}
+
+
+
+/* Container for Bank Details & Invoice Summary */
+.invoice-summary-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* Two equal columns */
+  gap: 20px;
+  align-items: start;
+  margin-top: -15px;
+}
+
+/* Style for Bank Details */
+.bank-details {
+  padding: 15px;
+  color: rgb(10, 10, 10);
+  text-align: left;
+  margin-top: 10px;
+}
+
+/* Ensure Invoice Summary remains aligned */
+.invoice-summary {
+  text-align: right;
+}
+
+.delete-button {
+  background-color: #d9534f;
+  /* Red */
+  color: white;
+  border: none;
+  padding: 2px 1px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.delete-button:hover {
+  background-color: #c9302c;
+}
+
+.invoice-details {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  /* Creates 4 equal columns */
+  gap: 10px;
+  /* Adds spacing between columns */
+  align-items: center;
+  /* Aligns text and inputs properly */
+  text-align: left;
+  width: 100%;
+  max-width: 800px;
+  /* Ensures the form doesn't stretch too much */
+  margin: auto;
+  /* Centers the form */
+}
+
+.invoice-details label {
+  font-weight: bold;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.invoice-details input {
+  width: 100%;
+  padding: 6px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.notes-section {
+  width: 100%;
+  margin-top: -5px;
+  padding: 1px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 5px;
+}
+
