@@ -44,7 +44,7 @@
 .invoice-details {
   display: grid;
   grid-template-columns: auto 1fr auto 1fr; /* label input label input */
-  gap: 10px;
+  gap: 1px;
   align-items: center;
   text-align: left;
   width: 100%;

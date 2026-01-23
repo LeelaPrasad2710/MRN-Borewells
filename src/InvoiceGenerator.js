@@ -208,7 +208,7 @@ const InvoiceGenerator = () => {
       <header className="invoice-header">
         <h1>MRN BOREWELLS</h1>
         <p>Contact:+91 9945033227</p>
-        <p>#1289,2nd Cross,6th Main,Kariyanapalya,Uttarahalli,Subramanyapura post,BSK 6th Stage,Banglore-98</p>
+        <p>#1289,2nd Cross,6th Main,Kariyanapalya,Subramanyapura post,BSK 6th Stage,Banglore-98</p>
       </header>
       <div className="invoice-detailsED">
         <p>E-Bill</p>
