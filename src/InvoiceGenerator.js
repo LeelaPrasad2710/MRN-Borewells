@@ -287,7 +287,7 @@ const InvoiceGenerator = () => {
       </div>
 
       <div className="notes-section">
-        <h4>Note: Please note the final amount may vary based on drilling depth. Please make a minimum advance payment of ₹1,00,000 before drilling.</h4>
+        <h4>Note: Please note the final amount may vary based on drilling depth. Please make a minimum 50% advance before drilling.</h4>
       </div>
 
       <div className="button-container">

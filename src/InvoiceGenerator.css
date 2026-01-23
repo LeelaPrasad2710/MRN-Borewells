@@ -123,10 +123,8 @@
 /* Notes */
 .notes-section {
   width: 100%;
-  margin-top: -5px;
+  margin-top: -25px;
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
   font-size: 14px;
   box-sizing: border-box;
 }
