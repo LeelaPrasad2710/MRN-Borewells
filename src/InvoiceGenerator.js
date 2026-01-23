@@ -137,7 +137,7 @@ const InvoiceGenerator = () => {
   //     });
   // };
 
-  const exportToPDF = async () => {
+const exportToPDF = async () => {
   const invoice = document.getElementById("invoice-content");
   if (!invoice) return;
 
@@ -168,36 +168,40 @@ const InvoiceGenerator = () => {
     scale: 2,
     useCORS: true,
     allowTaint: true,
-    scrollY: -window.scrollY,
   });
 
-  const imgData = canvas.toDataURL("image/png");
+  const imgData = canvas.toDataURL("image/jpeg", 0.9);
 
   const pdf = new jsPDF("p", "mm", "a4");
   const pdfWidth = pdf.internal.pageSize.getWidth();
   const pdfHeight = pdf.internal.pageSize.getHeight();
 
+  // Calculate image size to fit inside A4 (1 page)
   const imgWidth = pdfWidth;
   const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-  let heightLeft = imgHeight;
-  let position = 0;
+  // If image height is bigger than A4, scale it down
+  let finalWidth = imgWidth;
+  let finalHeight = imgHeight;
 
-  pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-  heightLeft -= pdfHeight;
-
-  while (heightLeft > 0) {
-    position = position - pdfHeight;
-    pdf.addPage();
-    pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
-    heightLeft -= pdfHeight;
+  if (imgHeight > pdfHeight) {
+    const scale = pdfHeight / imgHeight;
+    finalWidth = imgWidth * scale;
+    finalHeight = imgHeight * scale;
   }
+
+  // Center the image in PDF
+  const x = (pdfWidth - finalWidth) / 2;
+  const y = (pdfHeight - finalHeight) / 2;
+
+  pdf.addImage(imgData, "JPEG", x, y, finalWidth, finalHeight);
 
   const fileName = to ? `${to.replace(/\s+/g, "_")}_invoice.pdf` : "invoice.pdf";
   pdf.save(fileName);
 
   document.body.removeChild(invoiceClone);
 };
+
 
 
 
