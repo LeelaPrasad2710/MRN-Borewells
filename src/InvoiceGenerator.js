@@ -5,6 +5,7 @@ import html2canvas from "html2canvas";
 
 const InvoiceGenerator = () => {
   const [rows, setRows] = useState([
+    { description: "Drilling Charges", depth: "001 To 300", quantity: "", price: "", amount: 0 },
     { description: "Drilling Charges", depth: "001 To 100", quantity: "", price: "", amount: 0 },
     { description: "Drilling Charges", depth: "101 To 200", quantity: "", price: "", amount: 0 },
     { description: "Drilling Charges", depth: "201 To 300", quantity: "", price: "", amount: 0 },
