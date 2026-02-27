@@ -24,7 +24,7 @@ const InvoiceGenerator = () => {
     { description: "Drilling Charges", depth: "1501 To 1600", quantity: "", price: "", amount: 0 },
     { description: "Drilling Charges", depth: "1601 To 1700", quantity: "", price: "", amount: 0 },
     { description: "Drilling Charges", depth: "1701 To 1800", quantity: "", price: "", amount: 0 },
-    { description: "Casing Pipe PVC 7\"", depth: "", quantity: "", price: "", amount: 0 },
+    { description: "Casing Pipe MS 7\"", depth: "", quantity: "", price: "", amount: 0 },
     { description: "Casing Pipe PVC 10\"", depth: "", quantity: "", price: "", amount: 0 },
     { description: "Coller", depth: "", quantity: "", price: "", amount: 0 },
     { description: "Wielding", depth: "", quantity: "", price: "", amount: 0 },
